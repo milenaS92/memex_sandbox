@@ -1,0 +1,10 @@
+path_to_memex: ./_data/
+bib_all: ./_bib/mi_biblioteca.bib
+bibtex_keys: ./_bib/mi_clean_bib.yml
+language_keys: ./_bib/bibtex_language.yml
+
+
+#path_to_memex: ./_data/
+#bib_all: ./_bib/zotero_bibliography.bib
+#bibtex_keys: ./_bib/bibtex_keys.yml
+#language_keys: ./_bib/bibtex_languages.yml
