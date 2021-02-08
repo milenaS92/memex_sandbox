@@ -69,7 +69,7 @@ def generatePublPath(pathToMemex, bibTexCode):
     directory = os.path.join(pathToMemex, temp[0], temp[:2], bibTexCode)
     return(directory)
 
-# process a single bibliographical record: 1) create its unique path; 2) save a bib file; 3) save PDF file 
+# process a single bibliographical record: 1) create its unique path; 2) save a bib file; 3) save PDF file
 def processBibRecord(pathToMemex, bibRecDict):
     tempPath = generatePublPath(pathToMemex, bibRecDict["rCite"])
 

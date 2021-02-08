@@ -1,18 +1,21 @@
+#path_to_memex: ./_data/
+#bib_all: ./_bib/zotero_bibliography.bib
+#bibtex_keys: ./_bib/bibtex_keys.yml
+#language_keys: ./_bib/bibtex_languages.yml
+
 # !!! DO NOT CHANGE EXISTING KEYS !!! ONLY VALUES
 
 # PATH TO MEMEX
 path_to_memex: ./_data/
 stopwords: ./_misc/stopwords/
 
-# BIBLIOGRAPHICAL FILES & OCR-ING
-zotero_bib: ./_bib/mi_biblioteca.bib # exported in portions from Zotero
-memex_all:  ./_bib/memex_bibliogaphy.bib # aggregated dfrom all single .bib files
+# BIBLIOGRAPHICAL FILES
+#bib_all: ./_bib/mi_biblioteca.bib
+bib_all: ./_bib/mi_sample.bib
 bibtex_keys: ./_bib/mis_llaves.yml
 language_keys: ./_bib/bibtex_language.yml
 ocr_results: .json
-page_limit: 500 # this will help to process items below a certail threshold first
-ocr_priorities: PetryGeographic1978, PetryGeographic1978a,
-    PetryGeographic1980, PetryGeographic1980a
+page_limit: 500
 
 # FILE NAMES WITH ANALYTICAL RESULTS
 tfidf_publ: results_tfidf_publications.dataJson
@@ -23,7 +26,6 @@ page_cosDist: results_cosineDist_pages.dataJson
 template_page: ./_misc/template_page.html
 template_index: ./_misc/template_index.html
 content_index: ./_misc/content_index.html
-template_search: ./_misc/template_search.html
 
 # GENERATED FILES AND EXTENSIONS
 memexDF_file: ./_data/memex.documentFrequencies
