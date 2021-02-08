@@ -117,16 +117,12 @@ def formatSearches(pathToMemex):
 def formatPublList(pathToMemex):
     ocrFiles = functions.dicOfRelevantFiles(pathToMemex, settings["ocr_results"])
     bibFiles = functions.dicOfRelevantFiles(pathToMemex, ".bib")
-    #print("------DicOfBibFiles:", bibFiles)
 
     contentsList = []
 
     for key, value in ocrFiles.items():
         if key in bibFiles:
-            #print("!!!!!!!CITATIONKEY:", key)
-            #print("´´´´´´´BIBFILE:", bibFiles[key])
             bibRecord = functions.loadBib(bibFiles[key])
-            #print("*******BIBRECORD:",bibRecord)
             bibRecord = bibRecord[key]
 
             relativePath = functions.generatePublPath(pathToMemex, key).replace(pathToMemex, "")
@@ -136,18 +132,15 @@ def formatPublList(pathToMemex):
                 authorOrEditor = bibRecord["editor"]
             if "author" in bibRecord:
                 authorOrEditor = bibRecord["author"]
-
-            dateOrYear = "[No data]"
             if "date" in bibRecord:
-                dateOrYear = bibRecord["date"][:4]
-            if "year" in bibRecord:
-                dateOrYear = bibRecord["year"]
-
+                date = bibRecord["date"][:4]
+            else:
+                date = 0000
             title = bibRecord["title"]
 
             # formatting template
             citeKey = '<div class="ID">[%s]</div>' % key
-            publication = '%s (%s) <i>%s</i>' % (authorOrEditor, dateOrYear, title)
+            publication = '%s (%s) <i>%s</i>' % (authorOrEditor, date, title)
             search = unicodedata.normalize('NFKD', publication).encode('ascii','ignore')
             publication += " <div class='hidden'>%s</div>" % search
             link = '<a href="%s/pages/DETAILS.html"><i>read</i></a>' % relativePath

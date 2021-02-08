@@ -25,3 +25,4 @@ function getPath() {
     document.execCommand('copy');
     document.body.removeChild(tempElem);
   };
+

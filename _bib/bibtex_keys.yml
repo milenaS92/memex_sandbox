@@ -36,7 +36,7 @@ institution: institution
 ids: ids
 eventtitle: eventtitle
 type: type
-date: date
+year: date
 editorbtype: editorbtype
 editorb: editorb
 origdate: origdate

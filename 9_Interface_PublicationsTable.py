@@ -81,8 +81,12 @@ def generateDoclLink(bibTexCode, pageVal, distance):
         author = bib["editor"]
     if "author" in bib:
         author = bib["author"]
+    if "date" in bib:
+        date = bib["date"][:4]
+    else:
+        date = 0000
 
-    reference = "%s (%s). <i>%s</i>" % (author, bib["date"][:4], bib["title"])
+    reference = "%s (%s). <i>%s</i>" % (author, date, bib["title"])
     search = unicodedata.normalize('NFKD', reference).encode('ascii','ignore')
     search = " <div class='hidden'>%s</div>" % search
 
@@ -117,7 +121,13 @@ def generateReferenceSimple(bibTexCode):
     if "author" in bib:
         author = bib["author"]
 
-    reference = "%s (%s). <i>%s</i>" % (author, bib["date"][:4], bib["title"])
+    if "date" in bib:
+        date = bib["date"][:4]
+    else:
+        date = 0000
+
+
+    reference = "%s (%s). <i>%s</i>" % (author, date, bib["title"])
     reference = reference.replace("{", "").replace("}", "")
     return(reference)
 

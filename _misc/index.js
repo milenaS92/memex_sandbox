@@ -25,9 +25,15 @@ docReady(function() {
 
 function getPath() {
   let href = document.location.href;
+  let ref  = document.location.href;
+  console.log(ref);
+  ref = ref.split("/");
+  let page = ref.slice(-1).toString().split(".").slice(-2,-1).toString();
+  ref = "[@" + ref.slice(-3, -2) + ", memex " + page + "]";
+  console.log(ref);
   // create a tml element to use in copy process!
   let tempElem = document.createElement('textarea');
-  tempElem.value = "[MEMEX_TO_OBSIDIAN](<" + href + ">)";
+  tempElem.value = ref + " [](<" + href + ">)";
   document.body.appendChild(tempElem);
   tempElem.select();
   document.execCommand('copy');

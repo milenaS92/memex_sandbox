@@ -41,34 +41,30 @@ def loadBib(bibTexFile):
     with open(bibTexFile, "r", encoding="utf8") as f1:
         records = f1.read()
         records = re.sub("\n@preamble[^\n]+", "", records)
-        records = records.split("\n@") #separate records
-        #for all records
+        records = records.split("\n@")
+
         for record in records[1:]:
-            completeRecord = "\n@" + record #restore complete record
-            #delete line with file direction
+            completeRecord = "\n@" + record
             completeRecord = re.sub("\n\s+file = [^\n]+", "", completeRecord)
-            #print("----COMPLETERECORD:")
+
             record = record.strip().split("\n")[:-1]
 
-            rType = record[0].split("{")[0].strip() #rType = kind of file
-            #rCiteRaw = citation name
+            rType = record[0].split("{")[0].strip()
             rCiteRaw = record[0].split("{")[1].strip().replace(",", "")
-            print("------RCITERAW:      ",rCiteRaw)
-            rCite = rCiteRaw.replace("", "") #delete -
-            print("------RCITE:      ",rCite)
+
+            rCite = rCiteRaw.replace("-", "")
+
             # only valid characters in citeKey:
-            if re.search("^[A-Za-z0-9_-]+$", rCite):
+            if re.search("^[A-Za-z0-9]+$", rCite):
                 bibDic[rCite] = {}
                 bibDic[rCite]["rCite"] = rCite
                 bibDic[rCite]["rType"] = rType
                 bibDic[rCite]["complete"] = completeRecord
 
-
                 for r in record[1:]:
                     key = r.split("=")[0].strip()
                     val = r.split("=")[1].strip()
                     val = re.sub("^\{|\},?", "", val)
-                    #print("VALUES: ",val)
 
                     bibDic[rCite][key] = val
 
@@ -91,10 +87,10 @@ def loadBib(bibTexFile):
 
         # filter bibDic: remove records that do not have informatin on authr/editor and date
         bibDicFiltered = {}
-        #print("------BIBDICITEMS:",bibDic.items())
+
         for k,v in bibDic.items():
-            if "author" in k or "editor" not in k:
-                if "date" in k or "year" not in k:
+            if "author" in v or "editor" in v:
+                if "title" in v:
                     bibDicFiltered[k] = v
                 else:
                     print(v["complete"])
@@ -108,7 +104,6 @@ def loadBib(bibTexFile):
         print("NUMBER OF RECORDS IN BIBLIOGRAPHY         : %d" % len(bibDic))
         print("NUMBER OF RECORDS IN FILTERED BIBLIOGRAPHY: %d" % len(bibDicFiltered))
         print("="*80)
-    #print("* * * bibDicFiltered:", bibDicFiltered)
     return(bibDicFiltered)
 
 # generate path from bibtex citation key; for example, if the key is `SavantMuslims2017`,
